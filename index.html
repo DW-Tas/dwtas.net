@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW Tas - 3D Printing Innovation</title>
+    <meta name="description" content="DW Tas designs innovative open-source hardware for the 3D printing community. Creator of EMU, A4T, Crossbow, and CNC Xol-Carriage.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="DW Tas Logo" class="logo-img">
+                <span class="logo-text">DW Tas</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="https://github.com/DW-Tas" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://ko-fi.com/dwtas" target="_blank" rel="noopener" class="btn-support">Support</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Open Source Hardware</div>
+            <h1>Open Source Designs for<br><span class="gradient-text">3D Printing</span></h1>
+            <p class="hero-subtitle">I design open-source hardware for the 3D printing community.<br>Toolheads, multi-material systems, and precision CNC components.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/DW-Tas" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">1500+</span>
+                    <span class="stat-label">GitHub Stars</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Major Projects</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">70+</span>
+                    <span class="stat-label">Community Members</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-glow"></div>
+        </div>
+    </header>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Projects</span>
+                <h2>Featured Projects</h2>
+                <p>Open-source hardware designs for 3D printers. Free to build, modify, and improve.</p>
+            </div>
+
+            <div class="project-grid">
+                <!-- EMU -->
+                <article class="project-card featured">
+                    <div class="project-image">
+                        <img src="images/emu-render.png" alt="EMU Multi-lane Unit" class="project-render">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag tag-featured">Featured</span>
+                            <span class="tag">Multi-Material</span>
+                            <span class="tag">Modular</span>
+                        </div>
+                        <h3>EMU</h3>
+                        <p class="project-subtitle">Expandable Multi-material Unit</p>
+                        <p class="project-description">A modular, expandable, and service-friendly multi-material unit designed around the proven Filamentalist V3 platform. Features sealed dry boxes, humidity sensors, and per-lane controls.</p>
+                        <ul class="project-features">
+                            <li>Modular & expandable—add lanes anytime</li>
+                            <li>Tool-free servicing, even mid-print</li>
+                            <li>Sealed dry boxes with humidity monitoring</li>
+                            <li>Off-the-shelf EBB42/EBB36 electronics</li>
+                        </ul>
+                        <div class="project-stats">
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                111 stars
+                            </span>
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7311C13.1823 10.3778 12.7915 9.72228 12.7915 8.98529C12.7915 7.88072 13.687 6.98529 14.7915 6.98529C15.8961 6.98529 16.7915 7.88072 16.7915 8.98529C16.7915 9.72228 16.4008 10.3778 15.7915 10.7311V12.0396C15.7915 14.2487 14.0006 16.0396 11.7915 16.0396H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.4022 17.6134 8 17.2676V6.73244C7.4022 6.38663 7 5.74028 7 5Z"/>
+                                </svg>
+                                5 forks
+                            </span>
+                        </div>
+                        <a href="https://github.com/DW-Tas/EMU" target="_blank" rel="noopener" class="project-link">
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- A4T -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="images/a4t-render.png" alt="A4T Toolhead" class="project-render">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Toolhead</span>
+                            <span class="tag">4010 Fans</span>
+                        </div>
+                        <h3>A4T</h3>
+                        <p class="project-subtitle">[A]nother [4]010 [T]oolhead</p>
+                        <p class="project-description">A high-performance toolhead for Voron printers built around dual 4010 blower fans. Features efficient duct design, LED lighting, and easy assembly with CFD-optimised cooling.</p>
+                        <ul class="project-features">
+                            <li>Dual 4010 blower fans with backflow inhibitors</li>
+                            <li>CFD-optimised cooling ducts</li>
+                            <li>Neopixel LED integration</li>
+                            <li>Compatible with multiple extruders</li>
+                        </ul>
+                        <div class="project-stats">
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                415 stars
+                            </span>
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7311C13.1823 10.3778 12.7915 9.72228 12.7915 8.98529C12.7915 7.88072 13.687 6.98529 14.7915 6.98529C15.8961 6.98529 16.7915 7.88072 16.7915 8.98529C16.7915 9.72228 16.4008 10.3778 15.7915 10.7311V12.0396C15.7915 14.2487 14.0006 16.0396 11.7915 16.0396H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.4022 17.6134 8 17.2676V6.73244C7.4022 6.38663 7 5.74028 7 5Z"/>
+                                </svg>
+                                32 forks
+                            </span>
+                        </div>
+                        <a href="https://github.com/Armchair-Heavy-Industries/A4T" target="_blank" rel="noopener" class="project-link">
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Crossbow -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="images/crossbow-render.png" alt="Crossbow Filament Cutter" class="project-render">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag tag-cnc">CNC Machined</span>
+                            <span class="tag">Filament Cutter</span>
+                        </div>
+                        <h3>Crossbow</h3>
+                        <p class="project-subtitle">CNC Filament Cutter</p>
+                        <p class="project-description">A robust, CNC-machined aluminium filament cutter designed for MMU systems. Built for thousands of cutting operations with easy blade replacement and universal toolhead compatibility.</p>
+                        <ul class="project-features">
+                            <li>CNC aluminium construction</li>
+                            <li>Low profile, low mass design</li>
+                            <li>Easy blade replacement</li>
+                            <li>Licensed manufacturer available</li>
+                        </ul>
+                        <div class="project-stats">
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                78 stars
+                            </span>
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7311C13.1823 10.3778 12.7915 9.72228 12.7915 8.98529C12.7915 7.88072 13.687 6.98529 14.7915 6.98529C15.8961 6.98529 16.7915 7.88072 16.7915 8.98529C16.7915 9.72228 16.4008 10.3778 15.7915 10.7311V12.0396C15.7915 14.2487 14.0006 16.0396 11.7915 16.0396H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.4022 17.6134 8 17.2676V6.73244C7.4022 6.38663 7 5.74028 7 5Z"/>
+                                </svg>
+                                6 forks
+                            </span>
+                        </div>
+                        <a href="https://github.com/DW-Tas/Crossbow-Filament-Cutter" target="_blank" rel="noopener" class="project-link">
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- CNC Xol-Carriage -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="images/cnc-xol-carriage-render.png" alt="CNC Xol-Carriage" class="project-render">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag tag-cnc">CNC Machined</span>
+                            <span class="tag">Carriage</span>
+                        </div>
+                        <h3>CNC Xol-Carriage</h3>
+                        <p class="project-subtitle">Precision Machined Carriage</p>
+                        <p class="project-description">The official CNC milled version of the Xol-Carriage. A precision-machined aluminium carriage for MGN12H and MGN9H rails, compatible with popular probes like Beacon and Cartographer.</p>
+                        <ul class="project-features">
+                            <li>Precision CNC machined aluminium</li>
+                            <li>MGN12H and MGN9H compatible</li>
+                            <li>Works with Beacon/Carto probes</li>
+                            <li>Drop-in replacement for printed parts</li>
+                        </ul>
+                        <div class="project-stats">
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                7 stars
+                            </span>
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7311C13.1823 10.3778 12.7915 9.72228 12.7915 8.98529C12.7915 7.88072 13.687 6.98529 14.7915 6.98529C15.8961 6.98529 16.7915 7.88072 16.7915 8.98529C16.7915 9.72228 16.4008 10.3778 15.7915 10.7311V12.0396C15.7915 14.2487 14.0006 16.0396 11.7915 16.0396H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.4022 17.6134 8 17.2676V6.73244C7.4022 6.38663 7 5.74028 7 5Z"/>
+                                </svg>
+                                1 fork
+                            </span>
+                        </div>
+                        <a href="https://github.com/DW-Tas/CNC-Xol-Carriage" target="_blank" rel="noopener" class="project-link">
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Xol Toolhead -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="images/xol-toolhead-render.png" alt="Xol Toolhead" class="project-render">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Toolhead</span>
+                            <span class="tag">Modular</span>
+                        </div>
+                        <h3>Xol Toolhead</h3>
+                        <p class="project-subtitle">Modular Toolhead Platform</p>
+                        <p class="project-description">The evolution of Mantis Xol 2, focused on modularity and quality of life improvements. Designed for easy installation and servicing with a wide range of hotend and extruder options.</p>
+                        <ul class="project-features">
+                            <li>Modular hotend and extruder support</li>
+                            <li>Easy installation and servicing</li>
+                            <li>Multiple probe options</li>
+                            <li>Active community development</li>
+                        </ul>
+                        <div class="project-stats">
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                726 stars
+                            </span>
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7311C13.1823 10.3778 12.7915 9.72228 12.7915 8.98529C12.7915 7.88072 13.687 6.98529 14.7915 6.98529C15.8961 6.98529 16.7915 7.88072 16.7915 8.98529C16.7915 9.72228 16.4008 10.3778 15.7915 10.7311V12.0396C15.7915 14.2487 14.0006 16.0396 11.7915 16.0396H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.4022 17.6134 8 17.2676V6.73244C7.4022 6.38663 7 5.74028 7 5Z"/>
+                                </svg>
+                                76 forks
+                            </span>
+                        </div>
+                        <a href="https://github.com/Armchair-Heavy-Industries/Xol-Toolhead" target="_blank" rel="noopener" class="project-link">
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Klicky-00 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="images/klicky-00-render.png" alt="Klicky-00 Probe" class="project-render">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Probe</span>
+                            <span class="tag">Zero Offset</span>
+                        </div>
+                        <h3>Klicky-00</h3>
+                        <p class="project-subtitle">Zero X,Y Offset Probe</p>
+                        <p class="project-description">A probe that sits directly under the nozzle for TAP-like consistency with repeatable Z-offset, even when changing nozzles. Built on the proven Klicky ecosystem.</p>
+                        <ul class="project-features">
+                            <li>Zero X,Y offset—probe under nozzle</li>
+                            <li>Repeatable Z-offset across nozzle changes</li>
+                            <li>Low cost, easy to source parts</li>
+                            <li>Compatible with Klicky macros</li>
+                        </ul>
+                        <div class="project-stats">
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                216 stars
+                            </span>
+                            <span class="project-stat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7311C13.1823 10.3778 12.7915 9.72228 12.7915 8.98529C12.7915 7.88072 13.687 6.98529 14.7915 6.98529C15.8961 6.98529 16.7915 7.88072 16.7915 8.98529C16.7915 9.72228 16.4008 10.3778 15.7915 10.7311V12.0396C15.7915 14.2487 14.0006 16.0396 11.7915 16.0396H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.4022 17.6134 8 17.2676V6.73244C7.4022 6.38663 7 5.74028 7 5Z"/>
+                                </svg>
+                                14 forks
+                            </span>
+                        </div>
+                        <a href="https://github.com/DW-Tas/Klicky-00" target="_blank" rel="noopener" class="project-link">
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-badge">About</span>
+                    <h2>About Me</h2>
+                    <p>I'm a maker from Tasmania, Australia, focused on designing practical hardware for the 3D printing community.</p>
+                    <p>My projects tend to focus on real problems—reliable filament handling, better cooling, easier servicing. I design with modularity in mind so things can be upgraded or fixed without major hassle.</p>
+                    <p>All my designs are shared under open-source licenses. You're welcome to build, modify, or improve on them. Some projects also have licensed manufacturers if you'd prefer to buy ready-made parts.</p>
+                    <div class="about-links">
+                        <a href="https://github.com/DW-Tas" target="_blank" rel="noopener" class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            Follow on GitHub
+                        </a>
+                        <a href="https://ko-fi.com/dwtas" target="_blank" rel="noopener" class="btn btn-primary">
+                            Support My Work
+                        </a>
+                    </div>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h4>Physical Products</h4>
+                        <p>Real hardware you can print, build, or buy from licensed manufacturers.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h4>Community Focused</h4>
+                        <p>Designed in collaboration with the 3D printing community to solve practical problems.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                <line x1="15" y1="9" x2="15.01" y2="9"/>
+                            </svg>
+                        </div>
+                        <h4>Open Source</h4>
+                        <p>All designs shared under Creative Commons—free to build, modify, and improve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="DW Tas Logo" class="logo-img">
+                        <span class="logo-text">DW Tas</span>
+                    </div>
+                    <p>Open-source hardware designs for the 3D printing community.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Projects</h4>
+                        <a href="https://github.com/Armchair-Heavy-Industries/Xol-Toolhead" target="_blank" rel="noopener">Xol Toolhead</a>
+                        <a href="https://github.com/DW-Tas/Klicky-00" target="_blank" rel="noopener">Klicky-00</a>
+                        <a href="https://github.com/DW-Tas/EMU" target="_blank" rel="noopener">EMU</a>
+                        <a href="https://github.com/Armchair-Heavy-Industries/A4T" target="_blank" rel="noopener">A4T</a>
+                        <a href="https://github.com/DW-Tas/Crossbow-Filament-Cutter" target="_blank" rel="noopener">Crossbow</a>
+                        <a href="https://github.com/DW-Tas/CNC-Xol-Carriage" target="_blank" rel="noopener">CNC Xol-Carriage</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="https://github.com/DW-Tas" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://ko-fi.com/dwtas" target="_blank" rel="noopener">Ko-fi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="designed-with">
+                    <span>My designs are created with</span>
+                    <a href="https://www.onshape.com" target="_blank" rel="noopener" class="onshape-link">
+                        <img src="images/onshape.svg" alt="Onshape" class="onshape-logo">
+                    </a>
+                </div>
+                <p>&copy; 2025 DW Tas. Open source designs licensed under CC BY-NC-SA 4.0.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
