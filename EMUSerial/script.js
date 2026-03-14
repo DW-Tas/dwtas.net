@@ -25,6 +25,11 @@ const clearFileBtn = document.getElementById('clear-file');
 
 // --- State ---
 let currentUser = null;
+const TOKEN_KEY = 'emu_token';
+
+function getToken() { return localStorage.getItem(TOKEN_KEY); }
+function setToken(t) { localStorage.setItem(TOKEN_KEY, t); }
+function clearToken() { localStorage.removeItem(TOKEN_KEY); }
 
 // --- Helpers ---
 function showError(msg) {
@@ -44,9 +49,12 @@ function showSection(section) {
 }
 
 async function apiFetch(path, options = {}) {
+    const token = getToken();
+    const headers = { ...(options.headers || {}) };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
     const res = await fetch(`${API_BASE}${path}`, {
-        credentials: 'include',
         ...options,
+        headers,
     });
     const data = await res.json();
     if (!res.ok) {
@@ -123,10 +131,9 @@ async function checkStatus() {
 
 // --- Logout ---
 logoutBtn.addEventListener('click', async () => {
-    try {
-        await apiFetch('/auth/logout', { method: 'POST' });
-    } catch { /* ignore */ }
+    clearToken();
     currentUser = null;
+    serialsSection.hidden = true;
     showUnauthenticated();
 });
 
@@ -194,7 +201,7 @@ serialForm.addEventListener('submit', async (e) => {
 
         const data = await fetch(`${API_BASE}/submit`, {
             method: 'POST',
-            credentials: 'include',
+            headers: { 'Authorization': `Bearer ${getToken()}` },
             body: formData,
         }).then(async res => {
             const json = await res.json();
@@ -227,8 +234,13 @@ function handleRedirectParams() {
     } else if (params.get('error') === 'no_email') {
         showError('Could not retrieve your email from Discord. Please ensure your Discord account has a verified email.');
     }
+    // Store token from OAuth callback
+    const token = params.get('token');
+    if (token) {
+        setToken(token);
+    }
     // Clean URL
-    if (params.has('auth') || params.has('error')) {
+    if (params.has('auth') || params.has('error') || params.has('token')) {
         window.history.replaceState({}, '', window.location.pathname);
     }
 }
