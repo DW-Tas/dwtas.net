@@ -108,9 +108,13 @@ async function checkStatus() {
         if (data.approved && data.approved.length > 0) {
             serialsSection.hidden = false;
             const sorted = [...data.approved].sort((a, b) => a.serial.localeCompare(b.serial));
-            serialsList.innerHTML = sorted.map(a =>
-                `<div class="serial-chip">${a.serial}</div>`
-            ).join('');
+            serialsList.innerHTML = '';
+            sorted.forEach(a => {
+                const chip = document.createElement('div');
+                chip.className = 'serial-chip';
+                chip.textContent = a.serial;
+                serialsList.appendChild(chip);
+            });
         }
 
         // If there's a pending submission, show pending state
@@ -229,21 +233,23 @@ document.getElementById('error-dismiss').addEventListener('click', hideError);
 
 // --- Handle OAuth redirect errors ---
 function handleRedirectParams() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('error') === 'no_code') {
+    const hash = window.location.hash.substring(1);
+    if (!hash) return;
+    const params = new URLSearchParams(hash);
+    const error = params.get('error');
+    if (error === 'no_code') {
         showError('Discord authentication was cancelled or failed.');
-    } else if (params.get('error') === 'no_email') {
+    } else if (error === 'no_email') {
         showError('Could not retrieve your email from Discord. Please ensure your Discord account has a verified email.');
+    } else if (error === 'invalid_state') {
+        showError('Authentication session expired. Please try signing in again.');
     }
-    // Store token from OAuth callback
     const token = params.get('token');
     if (token) {
         setToken(token);
     }
-    // Clean URL
-    if (params.has('auth') || params.has('error') || params.has('token')) {
-        window.history.replaceState({}, '', window.location.pathname);
-    }
+    // Clean URL fragment immediately
+    window.history.replaceState({}, '', window.location.pathname);
 }
 
 // --- Init ---
