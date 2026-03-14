@@ -196,6 +196,32 @@ a:hover { color: var(--color-accent); }
     min-width: 0;
 }
 .media-url-input::placeholder { color: var(--color-text-muted); }
+.media-url-input.invalid { color: var(--color-error); }
+.media-url-error {
+    font-size: 0.75rem; color: var(--color-error); margin-top: 2px;
+    display: none;
+}
+.media-url-input.invalid ~ .media-url-error { display: block; }
+
+/* Page drop overlay */
+.drop-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(99, 102, 241, 0.15);
+    backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+}
+.drop-overlay[hidden] { display: none; }
+.drop-overlay-content {
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    padding: 2.5rem 3rem;
+    background: var(--color-bg-secondary);
+    border: 3px dashed var(--color-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+.drop-overlay-icon { font-size: 3rem; }
+.drop-overlay-text { font-size: 1.25rem; font-weight: 600; color: var(--color-primary); }
 
 /* Turnstile */
 .cf-turnstile { margin: 1rem 0; display: flex; justify-content: center; }

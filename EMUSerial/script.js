@@ -206,8 +206,32 @@ function renderMediaList() {
             input.placeholder = 'https://youtube.com/... or image URL';
             input.value = item.url || '';
             input.dataset.id = item.id;
-            input.addEventListener('input', () => { item.url = input.value; });
-            row.appendChild(input);
+            input.addEventListener('input', () => {
+                item.url = input.value;
+                input.classList.remove('invalid');
+                const err = urlWrap.querySelector('.media-url-error');
+                if (err) err.style.display = 'none';
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value.trim()) return;
+                const check = validateUrl(input.value.trim());
+                const errEl = urlWrap.querySelector('.media-url-error');
+                if (!check.valid) {
+                    input.classList.add('invalid');
+                    if (errEl) { errEl.textContent = check.reason; errEl.style.display = 'block'; }
+                } else {
+                    input.classList.remove('invalid');
+                    if (errEl) errEl.style.display = 'none';
+                }
+            });
+
+            const urlWrap = document.createElement('div');
+            urlWrap.style.cssText = 'flex:1;min-width:0;';
+            urlWrap.appendChild(input);
+            const errSpan = document.createElement('div');
+            errSpan.className = 'media-url-error';
+            urlWrap.appendChild(errSpan);
+            row.appendChild(urlWrap);
         }
 
         const removeBtn = document.createElement('button');
@@ -227,6 +251,33 @@ function formatSize(bytes) {
     return (bytes / 1048576).toFixed(1) + ' MB';
 }
 
+// --- URL validation ---
+const ALLOWED_URL_PATTERNS = [
+    /^https:\/\/(www\.)?youtube\.com\/watch/i,
+    /^https:\/\/youtu\.be\//i,
+    /^https:\/\/(www\.)?youtube\.com\/shorts\//i,
+    /^https?:\/\/.+\.(jpe?g|png|gif|webp)(\?.*)?$/i,
+    /^https?:\/\/(www\.)?imgur\.com\//i,
+    /^https?:\/\/i\.imgur\.com\//i,
+    /^https?:\/\/(www\.)?flickr\.com\//i,
+    /^https?:\/\/drive\.google\.com\//i,
+    /^https?:\/\/photos\.google\.com\//i,
+    /^https?:\/\/emuimages\.dwtas\.net\//i,
+];
+
+function validateUrl(url) {
+    if (!url) return { valid: false, reason: 'URL is required' };
+    let parsed;
+    try { parsed = new URL(url); } catch { return { valid: false, reason: 'Invalid URL format' }; }
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+        return { valid: false, reason: 'URL must start with https:// or http://' };
+    }
+    if (url.length > 2048) return { valid: false, reason: 'URL is too long' };
+    const matched = ALLOWED_URL_PATTERNS.some(p => p.test(url));
+    if (!matched) return { valid: false, reason: 'Only image links (jpg/png/gif/webp), YouTube, Imgur, Flickr, or Google Photos/Drive URLs are accepted' };
+    return { valid: true };
+}
+
 addPhotoBtn.addEventListener('click', () => hiddenFileInput.click());
 hiddenFileInput.addEventListener('change', () => {
     if (hiddenFileInput.files.length) addFileItems(hiddenFileInput.files);
@@ -234,14 +285,33 @@ hiddenFileInput.addEventListener('change', () => {
 });
 addUrlBtn.addEventListener('click', addUrlItem);
 
-// Drag & drop onto media list area
-const formGroup = mediaList.parentElement;
-formGroup.addEventListener('dragover', e => { e.preventDefault(); mediaList.classList.add('dragover'); });
-formGroup.addEventListener('dragleave', () => mediaList.classList.remove('dragover'));
-formGroup.addEventListener('drop', e => {
+// --- Page-level drag & drop ---
+const dropOverlay = document.getElementById('drop-overlay');
+let dragCounter = 0;
+
+document.addEventListener('dragenter', e => {
+    if (!e.dataTransfer.types.includes('Files')) return;
     e.preventDefault();
-    mediaList.classList.remove('dragover');
-    if (e.dataTransfer.files.length) addFileItems(e.dataTransfer.files);
+    dragCounter++;
+    dropOverlay.hidden = false;
+});
+document.addEventListener('dragover', e => {
+    if (!e.dataTransfer.types.includes('Files')) return;
+    e.preventDefault();
+});
+document.addEventListener('dragleave', e => {
+    dragCounter--;
+    if (dragCounter <= 0) { dragCounter = 0; dropOverlay.hidden = true; }
+});
+document.addEventListener('drop', e => {
+    e.preventDefault();
+    dragCounter = 0;
+    dropOverlay.hidden = true;
+    if (e.dataTransfer.files.length) {
+        const images = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+        if (images.length) addFileItems(images);
+        else showError('Only image files can be dropped here.');
+    }
 });
 
 // --- Form submission ---
@@ -258,6 +328,11 @@ serialForm.addEventListener('submit', async (e) => {
     for (const u of urls) {
         if (!u.url || !u.url.trim()) {
             showError('Please fill in all URL fields or remove empty ones.');
+            return;
+        }
+        const check = validateUrl(u.url.trim());
+        if (!check.valid) {
+            showError(check.reason);
             return;
         }
     }
