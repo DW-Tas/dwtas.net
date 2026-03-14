@@ -172,6 +172,18 @@ function removeMediaItem(id) {
 
 function renderMediaList() {
     mediaList.innerHTML = '';
+    const dropzone = document.getElementById('media-dropzone');
+    if (mediaItems.length === 0) {
+        const dz = document.createElement('div');
+        dz.id = 'media-dropzone';
+        dz.className = 'media-dropzone';
+        dz.innerHTML = '<span class="media-dropzone-icon">&#128247;</span>'
+            + '<span class="media-dropzone-text">Drag & drop photos here</span>'
+            + '<span class="media-dropzone-subtext">or use the buttons below</span>';
+        dz.addEventListener('click', () => hiddenFileInput.click());
+        mediaList.appendChild(dz);
+        return;
+    }
     for (const item of mediaItems) {
         const row = document.createElement('div');
         row.className = 'media-item';
@@ -284,6 +296,10 @@ hiddenFileInput.addEventListener('change', () => {
     hiddenFileInput.value = '';
 });
 addUrlBtn.addEventListener('click', addUrlItem);
+
+// Make the initial server-rendered dropzone clickable
+const initialDropzone = document.getElementById('media-dropzone');
+if (initialDropzone) initialDropzone.addEventListener('click', () => hiddenFileInput.click());
 
 // --- Page-level drag & drop ---
 const dropOverlay = document.getElementById('drop-overlay');
