@@ -83,28 +83,14 @@
 
                     <form id="serial-form">
                         <div class="form-group">
-                            <label class="form-label">Build Photo <span class="required">*</span></label>
-                            <div class="photo-toggle">
-                                <button type="button" class="toggle-btn active" data-mode="upload">Upload Image</button>
-                                <button type="button" class="toggle-btn" data-mode="url">Paste URL</button>
+                            <label class="form-label">Build Media <span class="required">*</span></label>
+                            <p class="form-hint">Add photos of your printed chip and EMU setup. You can also link YouTube videos or other URLs.</p>
+                            <div id="media-list" class="media-list"></div>
+                            <div class="media-add-btns">
+                                <button type="button" id="add-photo-btn" class="btn btn-small btn-outline">+ Add Photo</button>
+                                <button type="button" id="add-url-btn" class="btn btn-small btn-outline">+ Add URL</button>
                             </div>
-                            <div id="upload-mode" class="photo-input">
-                                <label class="file-drop" id="file-drop">
-                                    <input type="file" id="photo-file" name="photo_file" accept="image/jpeg,image/png,image/gif,image/webp">
-                                    <div class="file-drop-content">
-                                        <span class="file-drop-icon">📷</span>
-                                        <span class="file-drop-text">Drop image here or click to browse</span>
-                                        <span class="file-drop-hint">JPEG, PNG, GIF, WebP — max 10 MB</span>
-                                    </div>
-                                    <div class="file-preview" id="file-preview" hidden>
-                                        <img id="preview-img" src="" alt="Preview">
-                                        <button type="button" id="clear-file" class="btn btn-small btn-outline">Remove</button>
-                                    </div>
-                                </label>
-                            </div>
-                            <div id="url-mode" class="photo-input" hidden>
-                                <input type="url" id="photo-url" name="photo_url" placeholder="https://imgur.com/... or YouTube link" class="form-input">
-                            </div>
+                            <input type="file" id="hidden-file-input" accept="image/jpeg,image/png,image/gif,image/webp" multiple hidden>
                         </div>
 
                         <div class="form-group">

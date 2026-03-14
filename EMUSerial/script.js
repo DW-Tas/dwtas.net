@@ -17,15 +17,16 @@ const pendingIssueLink = document.getElementById('pending-issue-link');
 const serialDisplay = document.getElementById('serial-display');
 const serialsSection = document.getElementById('serials-section');
 const serialsList = document.getElementById('serials-list');
-const photoFile = document.getElementById('photo-file');
-const fileDrop = document.getElementById('file-drop');
-const filePreview = document.getElementById('file-preview');
-const previewImg = document.getElementById('preview-img');
-const clearFileBtn = document.getElementById('clear-file');
+const mediaList = document.getElementById('media-list');
+const hiddenFileInput = document.getElementById('hidden-file-input');
+const addPhotoBtn = document.getElementById('add-photo-btn');
+const addUrlBtn = document.getElementById('add-url-btn');
 
 // --- State ---
 let currentUser = null;
 const TOKEN_KEY = 'emu_token';
+const mediaItems = []; // { type: 'file'|'url', file?: File, url?: string, id: number }
+let mediaIdCounter = 0;
 
 function getToken() { return localStorage.getItem(TOKEN_KEY); }
 function setToken(t) { localStorage.setItem(TOKEN_KEY, t); }
@@ -142,50 +143,124 @@ logoutBtn.addEventListener('click', async () => {
     showUnauthenticated();
 });
 
-// --- Photo toggle ---
-document.querySelectorAll('.toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const mode = btn.dataset.mode;
-        document.getElementById('upload-mode').hidden = mode !== 'upload';
-        document.getElementById('url-mode').hidden = mode !== 'url';
-    });
-});
+// --- Media management ---
+const MAX_MEDIA = 10;
 
-// --- File drop ---
-fileDrop.addEventListener('dragover', e => { e.preventDefault(); fileDrop.classList.add('dragover'); });
-fileDrop.addEventListener('dragleave', () => fileDrop.classList.remove('dragover'));
-fileDrop.addEventListener('drop', e => {
-    e.preventDefault();
-    fileDrop.classList.remove('dragover');
-    if (e.dataTransfer.files.length) {
-        photoFile.files = e.dataTransfer.files;
-        showPreview(e.dataTransfer.files[0]);
+function addFileItems(files) {
+    for (const file of files) {
+        if (mediaItems.length >= MAX_MEDIA) { showError(`Maximum ${MAX_MEDIA} media items allowed.`); break; }
+        const id = ++mediaIdCounter;
+        mediaItems.push({ type: 'file', file, id });
     }
-});
-photoFile.addEventListener('change', () => {
-    if (photoFile.files.length) showPreview(photoFile.files[0]);
-});
-clearFileBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    photoFile.value = '';
-    filePreview.hidden = true;
-    document.querySelector('.file-drop-content').hidden = false;
-});
-
-function showPreview(file) {
-    const url = URL.createObjectURL(file);
-    previewImg.src = url;
-    filePreview.hidden = false;
-    document.querySelector('.file-drop-content').hidden = true;
+    renderMediaList();
 }
+
+function addUrlItem() {
+    if (mediaItems.length >= MAX_MEDIA) { showError(`Maximum ${MAX_MEDIA} media items allowed.`); return; }
+    const id = ++mediaIdCounter;
+    mediaItems.push({ type: 'url', url: '', id });
+    renderMediaList();
+    const input = document.querySelector(`.media-url-input[data-id="${id}"]`);
+    if (input) input.focus();
+}
+
+function removeMediaItem(id) {
+    const idx = mediaItems.findIndex(m => m.id === id);
+    if (idx !== -1) mediaItems.splice(idx, 1);
+    renderMediaList();
+}
+
+function renderMediaList() {
+    mediaList.innerHTML = '';
+    for (const item of mediaItems) {
+        const row = document.createElement('div');
+        row.className = 'media-item';
+
+        if (item.type === 'file') {
+            const img = document.createElement('img');
+            img.className = 'media-item-preview';
+            img.src = URL.createObjectURL(item.file);
+            img.alt = 'Preview';
+            row.appendChild(img);
+
+            const info = document.createElement('div');
+            info.className = 'media-item-info';
+            const name = document.createElement('span');
+            name.className = 'media-item-name';
+            name.textContent = item.file.name;
+            const size = document.createElement('span');
+            size.className = 'media-item-size';
+            size.textContent = formatSize(item.file.size);
+            info.appendChild(name);
+            info.appendChild(size);
+            row.appendChild(info);
+        } else {
+            const icon = document.createElement('div');
+            icon.className = 'media-item-icon';
+            icon.textContent = '\uD83D\uDD17';
+            row.appendChild(icon);
+
+            const input = document.createElement('input');
+            input.type = 'url';
+            input.className = 'media-url-input';
+            input.placeholder = 'https://youtube.com/... or image URL';
+            input.value = item.url || '';
+            input.dataset.id = item.id;
+            input.addEventListener('input', () => { item.url = input.value; });
+            row.appendChild(input);
+        }
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'media-item-remove';
+        removeBtn.innerHTML = '&times;';
+        removeBtn.addEventListener('click', () => removeMediaItem(item.id));
+        row.appendChild(removeBtn);
+
+        mediaList.appendChild(row);
+    }
+}
+
+function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+addPhotoBtn.addEventListener('click', () => hiddenFileInput.click());
+hiddenFileInput.addEventListener('change', () => {
+    if (hiddenFileInput.files.length) addFileItems(hiddenFileInput.files);
+    hiddenFileInput.value = '';
+});
+addUrlBtn.addEventListener('click', addUrlItem);
+
+// Drag & drop onto media list area
+const formGroup = mediaList.parentElement;
+formGroup.addEventListener('dragover', e => { e.preventDefault(); mediaList.classList.add('dragover'); });
+formGroup.addEventListener('dragleave', () => mediaList.classList.remove('dragover'));
+formGroup.addEventListener('drop', e => {
+    e.preventDefault();
+    mediaList.classList.remove('dragover');
+    if (e.dataTransfer.files.length) addFileItems(e.dataTransfer.files);
+});
 
 // --- Form submission ---
 serialForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     hideError();
+
+    if (mediaItems.length === 0) {
+        showError('Please add at least one photo or URL.');
+        return;
+    }
+
+    const urls = mediaItems.filter(m => m.type === 'url');
+    for (const u of urls) {
+        if (!u.url || !u.url.trim()) {
+            showError('Please fill in all URL fields or remove empty ones.');
+            return;
+        }
+    }
 
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
@@ -196,12 +271,15 @@ serialForm.addEventListener('submit', async (e) => {
     try {
         const formData = new FormData(serialForm);
 
-        // Include the correct photo field based on active mode
-        const isUpload = document.querySelector('.toggle-btn.active').dataset.mode === 'upload';
-        if (isUpload) {
-            formData.delete('photo_url');
-        } else {
-            formData.delete('photo_file');
+        // Append media items
+        for (const item of mediaItems) {
+            if (item.type === 'file') {
+                formData.append('media_files', item.file);
+            }
+        }
+        const mediaUrls = mediaItems.filter(m => m.type === 'url').map(m => m.url);
+        if (mediaUrls.length > 0) {
+            formData.append('media_urls', JSON.stringify(mediaUrls));
         }
 
         const data = await fetch(`${API_BASE}/submit`, {

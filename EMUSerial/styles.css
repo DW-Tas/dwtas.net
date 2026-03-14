@@ -158,38 +158,44 @@ a:hover { color: var(--color-accent); }
 .form-input::placeholder { color: var(--color-text-muted); }
 .form-textarea { resize: vertical; min-height: 80px; }
 
-/* Photo toggle */
-.photo-toggle { display: flex; gap: 0; margin-bottom: 0.75rem; }
-.toggle-btn {
-    flex: 1; padding: 0.5rem;
+/* Media list */
+.form-hint { font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+.media-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+.media-item {
+    display: flex; align-items: center; gap: 0.75rem;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-    font-family: var(--font-sans); font-size: 0.85rem; font-weight: 500;
-    cursor: pointer; transition: all var(--transition-fast);
-}
-.toggle-btn:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
-.toggle-btn:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; border-left: none; }
-.toggle-btn.active { background: var(--color-primary-dark); color: #fff; border-color: var(--color-primary); }
-
-/* File drop */
-.file-drop {
-    display: block; cursor: pointer;
-    border: 2px dashed var(--color-border-light);
     border-radius: var(--radius-md);
-    padding: 2rem; text-align: center;
-    transition: border-color var(--transition-fast), background var(--transition-fast);
+    padding: 0.5rem 0.75rem;
 }
-.file-drop:hover, .file-drop.dragover {
-    border-color: var(--color-primary); background: rgba(74, 111, 165, 0.05);
+.media-item-preview {
+    width: 60px; height: 60px; object-fit: cover;
+    border-radius: var(--radius-sm); flex-shrink: 0;
 }
-.file-drop input[type="file"] { display: none; }
-.file-drop-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
-.file-drop-text { display: block; color: var(--color-text-secondary); margin-bottom: 0.25rem; }
-.file-drop-hint { display: block; font-size: 0.8rem; color: var(--color-text-muted); }
-.file-preview { position: relative; }
-.file-preview img { max-width: 100%; max-height: 200px; border-radius: var(--radius-sm); }
-.file-preview .btn { margin-top: 0.5rem; }
+.media-item-icon {
+    width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
+    background: var(--color-bg-tertiary); border-radius: var(--radius-sm); flex-shrink: 0;
+    font-size: 1.5rem;
+}
+.media-item-info { flex: 1; min-width: 0; }
+.media-item-name {
+    display: block; font-size: 0.85rem; color: var(--color-text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.media-item-size { font-size: 0.75rem; color: var(--color-text-muted); }
+.media-item-remove {
+    background: none; border: none; color: var(--color-text-muted);
+    cursor: pointer; font-size: 1.2rem; padding: 0.25rem; line-height: 1;
+    transition: color var(--transition-fast);
+}
+.media-item-remove:hover { color: var(--color-error); }
+.media-add-btns { display: flex; gap: 0.5rem; }
+.media-url-input {
+    flex: 1; background: transparent; border: none; color: var(--color-text);
+    font-family: var(--font-sans); font-size: 0.85rem; outline: none;
+    min-width: 0;
+}
+.media-url-input::placeholder { color: var(--color-text-muted); }
 
 /* Turnstile */
 .cf-turnstile { margin: 1rem 0; display: flex; justify-content: center; }
