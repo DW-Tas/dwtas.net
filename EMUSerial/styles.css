@@ -209,6 +209,29 @@ a:hover { color: var(--color-accent); }
     text-align: center;
 }
 
+/* ===== Serials list ===== */
+.serials-list {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin: 1rem 0;
+}
+.serial-chip {
+    background: var(--color-bg);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary-light);
+}
+.register-another {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+#serials-section { border-bottom: 1px solid var(--color-border); }
+
 /* ===== Error banner ===== */
 .error-banner {
     margin-top: 1.5rem; padding: 1rem 1.25rem;

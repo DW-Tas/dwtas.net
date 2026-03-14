@@ -15,6 +15,8 @@ const submitBtn = document.getElementById('submit-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const pendingIssueLink = document.getElementById('pending-issue-link');
 const serialDisplay = document.getElementById('serial-display');
+const serialsSection = document.getElementById('serials-section');
+const serialsList = document.getElementById('serials-list');
 const photoFile = document.getElementById('photo-file');
 const fileDrop = document.getElementById('file-drop');
 const filePreview = document.getElementById('file-preview');
@@ -38,6 +40,7 @@ function showSection(section) {
     formSection.hidden = true;
     pendingSection.hidden = true;
     approvedSection.hidden = true;
+    serialsSection.hidden = true;
     section.hidden = false;
 }
 
@@ -93,16 +96,24 @@ function showAuthenticated() {
 async function checkStatus() {
     try {
         const data = await apiFetch('/status');
-        if (data.status === 'pending') {
+
+        // Show previously approved serials if any
+        if (data.approved && data.approved.length > 0) {
+            serialsSection.hidden = false;
+            serialsList.innerHTML = data.approved.map(a =>
+                `<div class="serial-chip">${a.serial}</div>`
+            ).join('');
+        }
+
+        // If there's a pending submission, show pending state
+        if (data.pending) {
             showSection(pendingSection);
-            if (data.issue_url) {
-                pendingIssueLink.href = data.issue_url;
+            if (data.pending.issue_url) {
+                pendingIssueLink.href = data.pending.issue_url;
                 pendingIssueLink.hidden = false;
             }
-        } else if (data.status === 'approved') {
-            showSection(approvedSection);
-            serialDisplay.textContent = data.serial || 'Approved';
         } else {
+            // No pending submission — show the form
             showSection(formSection);
         }
     } catch {
