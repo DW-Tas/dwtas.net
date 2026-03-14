@@ -99,7 +99,8 @@ async function checkStatus() {
         // Show previously approved serials if any
         if (data.approved && data.approved.length > 0) {
             serialsSection.hidden = false;
-            serialsList.innerHTML = data.approved.map(a =>
+            const sorted = [...data.approved].sort((a, b) => a.serial.localeCompare(b.serial));
+            serialsList.innerHTML = sorted.map(a =>
                 `<div class="serial-chip">${a.serial}</div>`
             ).join('');
         }
