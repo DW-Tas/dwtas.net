@@ -239,10 +239,10 @@ a:hover { color: var(--color-accent); }
     border: 1px solid rgba(248, 81, 73, 0.3);
     border-radius: var(--radius-md);
     color: var(--color-error);
-    display: flex; align-items: center; justify-content: space-between;
+    display: none; align-items: center; justify-content: space-between;
     font-size: 0.9rem;
 }
-.error-banner[hidden] { display: none; }
+.error-banner.visible { display: flex; }
 .error-dismiss {
     background: none; border: none; color: var(--color-error);
     font-size: 1.2rem; cursor: pointer; padding: 0 0.25rem;

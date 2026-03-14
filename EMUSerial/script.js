@@ -34,11 +34,11 @@ function clearToken() { localStorage.removeItem(TOKEN_KEY); }
 // --- Helpers ---
 function showError(msg) {
     errorMessage.textContent = msg;
-    errorBanner.hidden = false;
+    errorBanner.classList.add('visible');
 }
 
 function hideError() {
-    errorBanner.hidden = true;
+    errorBanner.classList.remove('visible');
 }
 
 function showSection(section) {
@@ -124,7 +124,8 @@ async function checkStatus() {
             // No pending submission — show the form
             showSection(formSection);
         }
-    } catch {
+    } catch (err) {
+        console.error('checkStatus error:', err);
         showSection(formSection);
     }
 }
