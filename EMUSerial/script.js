@@ -40,7 +40,6 @@ function showSection(section) {
     formSection.hidden = true;
     pendingSection.hidden = true;
     approvedSection.hidden = true;
-    serialsSection.hidden = true;
     section.hidden = false;
 }
 
