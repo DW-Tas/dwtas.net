@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW Tas Colour Palette</title>
+    <style>
+        :root {
+            --bg: #0a0c10;
+            --bg-secondary: #0f1318;
+            --bg-tertiary: #161b22;
+            --surface: #1c2128;
+            --border: #2d333b;
+            --border-light: #444c56;
+            --text: #f0f3f6;
+            --text-secondary: #9aa5b1;
+            --text-muted: #6b7785;
+            --primary: #4a6fa5;
+            --primary-light: #6989b9;
+            --primary-dark: #3d5a80;
+            --accent: #7ea3cc;
+            --accent-secondary: #98b4d4;
+            --success: #3fb950;
+            --warning: #d29922;
+            --hero-badge-bg: #6366f11a;
+            --hero-badge-border: #6366f14d;
+            --glow: #4a6fa526;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 24px 64px;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0c10 0%, #0f1318 100%);
+            color: var(--text);
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 2.4rem;
+            line-height: 1.1;
+        }
+
+        .intro {
+            max-width: 760px;
+            margin: 0 0 28px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .meta {
+            display: inline-block;
+            margin-bottom: 28px;
+            padding: 8px 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 999px;
+            color: var(--accent-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+        }
+
+        .section {
+            margin-top: 36px;
+        }
+
+        .section h2 {
+            margin: 0 0 12px;
+            font-size: 1.35rem;
+        }
+
+        .section p {
+            margin: 0 0 16px;
+            color: var(--text-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(28, 33, 40, 0.86);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        th {
+            background: rgba(10, 12, 16, 0.88);
+            color: var(--accent-secondary);
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        td code {
+            font-family: "JetBrains Mono", Consolas, monospace;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .swatch {
+            width: 72px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .chip {
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border-light);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        .gradient-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .gradient-card {
+            padding: 18px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(28, 33, 40, 0.86);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .gradient-preview {
+            height: 92px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 14px;
+        }
+
+        .gradient-card h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+        }
+
+        .gradient-card p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 24px 14px 40px;
+            }
+
+            table,
+            thead,
+            tbody,
+            tr,
+            th,
+            td {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                padding: 14px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            td {
+                padding: 8px 0;
+                border: 0;
+            }
+
+            td::before {
+                content: attr(data-label);
+                display: block;
+                margin-bottom: 4px;
+                color: var(--accent-secondary);
+                font-size: 0.76rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>DW Tas Colour Palette</h1>
+        <p class="intro">This reference is based on the current site palette defined in styles.css. It gives you a table-first style-guide sheet with token names, hex values, intended use, and a live swatch for quick handoff.</p>
+        <div class="meta">Source: dwtas.net/styles.css</div>
+
+        <section class="section">
+            <h2>Core Palette</h2>
+            <p>Primary UI colours used across backgrounds, typography, borders, brand accents, and status states.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Hex</th>
+                        <th>Usage</th>
+                        <th>Preview</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Token"><code>--color-bg</code></td>
+                        <td data-label="Hex"><code>#0A0C10</code></td>
+                        <td data-label="Usage">Main page background</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#0a0c10"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-bg-secondary</code></td>
+                        <td data-label="Hex"><code>#0F1318</code></td>
+                        <td data-label="Usage">Secondary dark background</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#0f1318"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-bg-tertiary</code></td>
+                        <td data-label="Hex"><code>#161B22</code></td>
+                        <td data-label="Usage">Section depth and layered panels</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#161b22"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-surface</code></td>
+                        <td data-label="Hex"><code>#1C2128</code></td>
+                        <td data-label="Usage">Cards, surfaces, content containers</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#1c2128"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-border</code></td>
+                        <td data-label="Hex"><code>#2D333B</code></td>
+                        <td data-label="Usage">Standard borders and dividers</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#2d333b"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-border-light</code></td>
+                        <td data-label="Hex"><code>#444C56</code></td>
+                        <td data-label="Usage">Elevated border contrast</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#444c56"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-text</code></td>
+                        <td data-label="Hex"><code>#F0F3F6</code></td>
+                        <td data-label="Usage">Primary text on dark backgrounds</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#f0f3f6"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-text-secondary</code></td>
+                        <td data-label="Hex"><code>#9AA5B1</code></td>
+                        <td data-label="Usage">Secondary copy and supporting UI text</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#9aa5b1"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-text-muted</code></td>
+                        <td data-label="Hex"><code>#6B7785</code></td>
+                        <td data-label="Usage">Muted notes, meta text, tertiary labels</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#6b7785"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-primary</code></td>
+                        <td data-label="Hex"><code>#4A6FA5</code></td>
+                        <td data-label="Usage">Main brand colour and CTA basis</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#4a6fa5"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-primary-light</code></td>
+                        <td data-label="Hex"><code>#6989B9</code></td>
+                        <td data-label="Usage">Highlights, hover states, bright brand accents</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#6989b9"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-primary-dark</code></td>
+                        <td data-label="Hex"><code>#3D5A80</code></td>
+                        <td data-label="Usage">Gradient anchor, deeper brand shading</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#3d5a80"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-accent</code></td>
+                        <td data-label="Hex"><code>#7EA3CC</code></td>
+                        <td data-label="Usage">Accent tint for interactive emphasis</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#7ea3cc"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-accent-secondary</code></td>
+                        <td data-label="Hex"><code>#98B4D4</code></td>
+                        <td data-label="Usage">Soft accent text and badges</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#98b4d4"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-success</code></td>
+                        <td data-label="Hex"><code>#3FB950</code></td>
+                        <td data-label="Usage">Positive states and success messaging</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#3fb950"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>--color-warning</code></td>
+                        <td data-label="Hex"><code>#D29922</code></td>
+                        <td data-label="Usage">Warnings, cautions, attention states</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#d29922"></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Supporting Transparent Tints</h2>
+            <p>Utility colours currently used for overlays, glow effects, and badge treatments.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Hex</th>
+                        <th>Usage</th>
+                        <th>Preview</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Token"><code>hero badge background</code></td>
+                        <td data-label="Hex"><code>#6366F11A</code></td>
+                        <td data-label="Usage">Subtle indigo wash behind hero badge</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#6366f11a"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>hero badge border</code></td>
+                        <td data-label="Hex"><code>#6366F14D</code></td>
+                        <td data-label="Usage">Hero badge outline tint</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#6366f14d"></div></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Token"><code>glow tint</code></td>
+                        <td data-label="Hex"><code>#4A6FA526</code></td>
+                        <td data-label="Usage">Ambient brand glow and highlight haze</td>
+                        <td data-label="Preview"><div class="swatch" style="background:#4a6fa526"></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Gradient Recipes</h2>
+            <p>Gradients used in the current site can be recreated from the hex stops below.</p>
+            <div class="gradient-card-grid">
+                <div class="gradient-card">
+                    <div class="gradient-preview" style="background:linear-gradient(135deg, #3d5a80 0%, #4a6fa5 50%, #6989b9 100%)"></div>
+                    <h3>Primary Gradient</h3>
+                    <p><code>#3D5A80</code> → <code>#4A6FA5</code> → <code>#6989B9</code></p>
+                </div>
+                <div class="gradient-card">
+                    <div class="gradient-preview" style="background:linear-gradient(135deg, #4a6fa5 0%, #7ea3cc 100%)"></div>
+                    <h3>Accent Gradient</h3>
+                    <p><code>#4A6FA5</code> → <code>#7EA3CC</code></p>
+                </div>
+                <div class="gradient-card">
+                    <div class="gradient-preview" style="background:radial-gradient(ellipse at center, rgba(74, 111, 165, 0.15) 0%, transparent 70%), #0f1318"></div>
+                    <h3>Glow Gradient</h3>
+                    <p><code>#4A6FA526</code> fading to <code>transparent</code> over dark surfaces</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Quick Usage Notes</h2>
+            <div class="chips">
+                <div class="chip">Use <strong>#0A0C10</strong> and <strong>#1C2128</strong> for primary dark surfaces.</div>
+                <div class="chip">Use <strong>#4A6FA5</strong> as the main interactive brand colour.</div>
+                <div class="chip">Use <strong>#F0F3F6</strong> for primary text and <strong>#9AA5B1</strong> for supporting copy.</div>
+                <div class="chip">Reserve <strong>#3FB950</strong> and <strong>#D29922</strong> for semantic states.</div>
+            </div>
+        </section>
+
+        <p class="footer-note">Open this file directly in the browser as a standalone style reference or hand it off as a simple palette sheet.</p>
+    </div>
+</body>
+</html>
